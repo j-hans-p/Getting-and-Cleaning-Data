@@ -9,9 +9,9 @@ wd = getwd()
 if(!file.exists("data")){dir.create("data")}
 
 #Download and unzip the zip file
-#fileurl = "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
-#download.file(fileurl, dest="./dataset.zip", mode="wb") 
-#unzip(zipfile = "dataset.zip", exdir = "./data")
+fileurl = "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+download.file(fileurl, dest="./dataset.zip", mode="wb") 
+unzip(zipfile = "dataset.zip", exdir = "./data")
 
 #Read files and create raw data tables
 datapath = file.path("./data", "UCI HAR Dataset")
