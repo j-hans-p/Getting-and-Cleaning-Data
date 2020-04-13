@@ -1,0 +1,27 @@
+This file describes the data and transformations performed using run_analysis.R
+
+1. Raw data was sourced from https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+    The data was zipped and split across several files, constituting both test and training data.
+
+2. For Q1 of the assignment, the data was unzipped and then merged into a single data set in two primary steps. First, the 3 training files (xtrain, ytrain, and subject_train) into a single data frame
+    this data frame has two identifying fields (subject & activity) and 561 data fields. There are 7352 records. The process is repeated for the 'test' data which had 2947 rows of data
+    In the second step, the 'test' and 'training' data are combined using rbind() since each has the same column data.
+    This new dataframe is called 'datasetcomplete'
+
+3. For Q2 of the assignment, a subset of 'datasetcomplete' was made. First, column names were added. These were provided in the features.txt file
+    The goal was to create a subset that only kept data fields for columns containing mean() and std() data. This was done in two steps using the subset and grep functions.
+    First, all columns containing 'mean' and 'std' were collected into a dataframe called ata_extract_mean_std_temp. Because this also captured fields with 
+   'freqmean' a second subset function was run to remove these unwanted columns.
+   
+4. For Q3 of the assignment, activity labels were matched to the corresponding number in the datasetcomplete dataframe. The mapping file 'activity_labels.txt' was used.
+
+5. For Q4 of the assigment, labels for each of the 561 variables were added to datasetcomplete. These were sourced from the 'features.txt' file
+
+6. Finally, for Q5 of the assignment, a second tidy dataframe was created. Here, there are 180 rows of data, each corresponding to a unique subject / activity combination (30 subjects x 6 activities)
+    This was done in three steps. First, the aggreate function was used to group the data by Subject and Activity and calcuate the mean for the remaining data fields
+    Second, that new dataframe was sorted by subject using the arrange function. This data frame now is ordered first by subject, then by activity with the means for each combindation in the remaining 561 columns
+    Finally, the column names are updated. The final table is 180 rows of data with two identifying column names (subject & activity) and 561 data columns.
+    
+    
+    
+   
